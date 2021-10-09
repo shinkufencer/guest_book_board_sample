@@ -1,2 +1,3 @@
-# guest_book_board_sample
-gusetbookのサンプルです。
+# README
+
+Kaigi on Railsの発表説明のためにつくったでもアプリケーションです。
