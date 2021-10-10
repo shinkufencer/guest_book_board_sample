@@ -10,26 +10,20 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-<ul class="flex justify-between bg-blue-300">
-  <li class="mr-6">
-    <a class="text-blue-500 hover:text-blue-800" href="#">GuestBook</a>
-  </li>
-  <li class="mr-6">
-    <% if logged_in? %>
-      <%= link_to "ログアウト", logout_path, class: "text-blue-500 hover:text-blue-800", method: :delete %>
-    <% else %>
-      <%= link_to "GitHubでログイン", "/auth/github", class: "text-blue-500 hover:text-blue-800", method: :post %>
-    <% end %>
-  </li>
-
-</ul>
+<body class="bg-green-400">
 <% if flash.notice.present? %>
   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
     <span class="block sm:inline"><%= flash.notice %></span>
   </div>
 <% end %>
 <%= yield %>
-
+<hr class="border-black border-1">
+<div class="text-right">
+  <% if logged_in? %>
+    <%= link_to "ログアウト", logout_path, class: "text-blue-500 hover:text-blue-800", method: :delete %>
+  <% else %>
+    <%= link_to "GitHubでログイン", "/auth/github", class: "text-blue-500 hover:text-blue-800", method: :post %>
+  <% end %>
+</div>
 </body>
 </html>
