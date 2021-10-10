@@ -20,7 +20,7 @@
 <hr class="border-black border-1">
 <div class="text-right">
   <% if logged_in? %>
-    <%= link_to "ログアウト", logout_path, class: "text-blue-500 hover:text-blue-800", method: :delete %>
+    <%= session_user.name %>さんでログイン中 [<%= link_to "ログアウト", logout_path, class: "text-blue-500 hover:text-blue-800", method: :delete %>]
   <% else %>
     <%= link_to "GitHubでログイン", "/auth/github", class: "text-blue-500 hover:text-blue-800", method: :post %>
   <% end %>
