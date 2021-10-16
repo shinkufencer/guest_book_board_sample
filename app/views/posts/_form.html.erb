@@ -1,37 +1,38 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="container mx-auto px-1">
+  <%= form_with(model: post, local: true) do |form| %>
+    <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+        <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :owner_id, :value => session_user.id %>
+
+    <table class="text-left p-3">
+      <tr>
+        <th class="p-1">タイトル：</th>
+        <td class="p-1"><%= form.text_field :title %></td>
+      </tr>
+      <tr>
+        <th class="p-1">URL：</th>
+        <td class="p-1"><%= form.text_field :homepage_url %></td>
+      </tr>
+      <tr>
+        <th colspan="2" class="p-1">
+          メッセージ：<br>
+          <%= form.text_area :message, :class => "w-full" %><br>
+
+          <div class="actions">
+            <%= form.submit value: "送信する" %>
+          </div>
+        </th>
+      </tr>
+    </table>
   <% end %>
-
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.text_field :owner_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :homepage_url %>
-    <%= form.text_area :homepage_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_area :message %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
