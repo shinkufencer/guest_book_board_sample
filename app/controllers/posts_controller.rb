@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_new_arrival_posts, only: %i[ show edit ]
 
   def index
     @posts = Post.all
@@ -52,6 +53,10 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_new_arrival_posts
+      @new_arrival_posts = Post.new_arrival_posts(@post)
     end
 
     def post_params

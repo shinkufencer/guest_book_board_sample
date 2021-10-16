@@ -1,0 +1,9 @@
+<%# new_arrival_posts: 呼び出し側から与えられる新着順に並んだPosts %>
+<hr class="border-black border-1">
+<div class="text-center">
+  直近の投稿は
+  <% new_arrival_posts.take(3).each do |post|  %>
+    『<%= link_to(post.title,post_path(post.id)) %>』
+  <% end %>
+  です。
+</div>
