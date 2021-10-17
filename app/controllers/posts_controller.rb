@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :set_new_arrival_posts, only: %i[ show edit ]
+  before_action :set_relation_posts,:set_pickup_post, only: %i[ show ]
+  before_action :set_recommend_posts, only: %i[ show edit]
 
   def index
     @posts = Post.all
@@ -57,6 +59,22 @@ class PostsController < ApplicationController
 
     def set_new_arrival_posts
       @new_arrival_posts = Post.new_arrival_posts(@post)
+    end
+
+    # @return [ActiveRecord::Relation<Post>] 閲覧中の投稿に関連する投稿
+    def set_relation_posts
+      @relation_posts = Post.relation_posts(@post)
+    end
+
+    # @return [Post] ピックアップしたい投稿
+    def set_pickup_post
+      @pickup_post = Post.pickup_post
+    end
+
+    # @return [ActiveRecord::Relation<Post>] 状況を加味したおすすめ投稿一覧
+    def set_recommend_posts
+      # おすすめはピックアップを除外した新着ポスト
+      @recommend_posts = Post.new_arrival_posts(@pickup_post)
     end
 
     def post_params

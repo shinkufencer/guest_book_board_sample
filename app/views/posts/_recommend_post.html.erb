@@ -1,0 +1,9 @@
+<%# recommend_posts: 呼び出し側から与えられるおすすめのPosts %>
+<hr class="border-black border-1">
+<div class="text-center">
+  おすすめの投稿は
+  <% recommend_posts.each do |post|  %>
+    『<%= link_to(post.title,post_path(post.id)) %>』
+  <% end %>
+  です。
+</div>
