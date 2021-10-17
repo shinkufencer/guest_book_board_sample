@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!session_user
   end
+
+  def require_login
+    return if logged_in?
+    redirect_to root_path, notice: "ログインしてください"
+  end
 end

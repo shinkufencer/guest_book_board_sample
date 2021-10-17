@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :require_login, only: %i[ new, edit]
+
   def index
     @posts = Post.all
   end
@@ -21,6 +23,8 @@ class PostsController < ApplicationController
     @relation_posts = Post.relation_posts(@post)
     @recommend_posts = Post.new_arrival_posts(nil)
   end
+
+  ### 中略 ###
 
   def create
     @post = Post.new(post_params)
