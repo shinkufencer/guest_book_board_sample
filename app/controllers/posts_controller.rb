@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @new_arrival_posts = Post.new_arrival_posts(@post)
     @relation_posts = Post.relation_posts(@post)
-    pickup_post = Post.pickup_post
+    pickup_post = Post.pickup_post(current_post: @post, new_arrival_posts: @new_arrival_posts)
     @recommend_posts = Post.new_arrival_posts(pickup_post)
   end
 

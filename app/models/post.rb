@@ -7,8 +7,8 @@ class Post < ApplicationRecord
     self.where.not(id: exclude_post&.id).order(created_at: :desc)
   end
 
-  # @return [Post] ピックアップポスト、とりあえずfirst
-  def self.pickup_post
+  # @return [Post] ピックアップポスト、ロジックは書きたかったが、とりあえずfirst
+  def self.pickup_post(current_post:,new_arrival_posts:)
     Post.first
   end
 
